@@ -10,6 +10,6 @@ assignees: denham-ed
 Description of the problem
 
 ***
-[ ] Action 1
-[ ] Action 2
-[ ] Action 3
+- [ ] Action 1
+- [ ] Action 2
+- [ ] Action 3
