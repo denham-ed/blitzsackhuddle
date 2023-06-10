@@ -1,18 +1,22 @@
-import { connect, connection } from "mongoose";
+const mongoose = require("mongoose");
 
+/**
+ * Establishes a connection to MongoDB using the provided MongoDB URI.
+ *
+ * @throws {Error} If the MongoDB connection fails, an error is thrown.
+ */
 const connectDB = async () => {
-  try {
-    const options = {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    };
-    
-    await connect(process.env.MONGO_URI, options);
-    console.log(`MongoDB connected: ${connection.host}`);
-  } catch (error) {
-    console.error(`MongoDB connection error: ${error.message}`);
-    process.exit(1);
+    try {
+      const conn = await mongoose.connect(process.env.MONGO_URI, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      });
+      console.log(`MongoDB connected: ${conn.connection.host}`);
+    } catch (e) {
+      console.log(`Error: ${e.message}`);
+      process.exit();
+    }
   }
-};
+  
 
-export default connectDB;
+module.exports = connectDB;
