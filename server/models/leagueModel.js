@@ -1,6 +1,5 @@
-import { Schema, model } from 'mongoose';
-
-const leagueSchema = new Schema({
+const mongoose = require('mongoose')
+const leagueSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -12,6 +11,6 @@ const leagueSchema = new Schema({
   }
 });
 
-const League = model('League', leagueSchema);
+const League = mongoose.Model('League', leagueSchema);
 
 export default League;

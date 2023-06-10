@@ -5,17 +5,18 @@ import {
   getLeagueById,
   updateLeague,
   deleteLeague,
-} from '../controllers/leagueControllers';
+} from '../controllers/league';
+import { protect } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
 router.route('/leagues')
-  .post(createLeague)
-  .get(getAllLeagues);
+  .post(protect, createLeague)
+  .get(protect, getAllLeagues);
 
 router.route('/leagues/:id')
-  .get(getLeagueById)
-  .put(updateLeague)
-  .delete(deleteLeague);
+  .get(protect, getLeagueById)
+  .put(protect, updateLeague)
+  .delete(protect, deleteLeague);
 
 export default router;
